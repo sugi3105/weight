@@ -1,17 +1,32 @@
-<h1>体重一覧</h1>
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-<a href="/weight_logs/create">体重を記録する</a>
+<div class="container">
+  <div class="card">
 
-<form method="GET" action="/weight_logs/search">
-  <input type="date" name="start_date">
-  <input type="date" name="end_date">
-  <button type="submit">検索</button>
-</form>
+  
+    <div class="header">
+      <h1>体重管理</h1>
+      <a href="/weight_logs/create" class="btn">体重を記録する</a>
+    </div>
 
-<hr>
+    
+    <form method="GET" action="/weight_logs/search" class="search">
+      <input type="date" name="start_date">
+      <input type="date" name="end_date">
+      <button class="btn">検索</button>
+    </form>
 
-@foreach($logs as $log)
-  <div>
-    {{ $log->date }} / {{ $log->weight }}kg
+    
+    @foreach($logs as $log)
+      <div class="log">
+        <div>
+          {{ $log->date }}
+        </div>
+        <div class="weight">
+          {{ $log->weight }}kg
+        </div>
+      </div>
+    @endforeach
+
   </div>
-@endforeach
+</div>

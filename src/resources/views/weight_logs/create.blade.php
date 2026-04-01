@@ -1,39 +1,28 @@
-<h1>体重登録</h1>
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+<div class="container">
+  <div class="card">
 
-@foreach ($errors->all() as $error)
-  <div style="color:red;">{{ $error }}</div>
-@endforeach
+    <h1>体重登録</h1>
 
-<form method="POST" action="/weight_logs">
-  @csrf
+    @foreach ($errors->all() as $error)
+      <div style="color:red;">{{ $error }}</div>
+    @endforeach
 
-  <div>
-    <label>日付</label>
-    <input type="date" name="date">
+    <form method="POST" action="/weight_logs">
+      @csrf
+
+      <input type="date" name="date">
+      <input type="text" name="weight" placeholder="体重">
+
+      <input type="text" name="calories" placeholder="カロリー">
+      <input type="time" name="exercise_time">
+      <textarea name="exercise_content" placeholder="運動内容"></textarea>
+
+      <button class="btn">登録</button>
+    </form>
+
+    <a href="/weight_logs">戻る</a>
+
   </div>
-
-  <div>
-    <label>体重</label>
-    <input type="text" name="weight">
-  </div>
-
-  <div>
-    <label>カロリー</label>
-    <input type="text" name="calories">
-  </div>
-
-  <div>
-    <label>運動時間</label>
-    <input type="time" name="exercise_time">
-  </div>
-
-  <div>
-    <label>運動内容</label>
-    <textarea name="exercise_content"></textarea>
-  </div>
-
-  <button type="submit">登録</button>
-</form>
-
-<a href="/weight_logs">戻る</a>
+</div>
