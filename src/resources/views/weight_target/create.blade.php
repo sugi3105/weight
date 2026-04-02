@@ -2,37 +2,55 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>目標体重設定</title>
+    <title>初期体重登録</title>
+
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 </head>
 <body>
 
-    <h1>目標体重設定</h1>
+<div class="auth-container">
 
-    <form action="{{ url('/register/step2') }}" method="POST">
-        @csrf
+    <div class="card">
 
-        <div>
-            <label for="target_weight">目標体重</label>
-            <input 
-                type="text" 
-                name="target_weight" 
-                id="target_weight"
-                value="{{ old('target_weight') }}"
-                placeholder="例：60.0"
-            >
-        </div>
+        <h1 class="logo">PiGLy</h1>
 
-    
-        @error('target_weight')
-            <div style="color:red;">
-                {{ $message }}
+        <p class="subtitle">新規会員登録</p>
+        <p class="step">STEP2 体重データの入力</p>
+
+        @if ($errors->any())
+            <div class="error">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
             </div>
-        @enderror
+        @endif
 
-        <div style="margin-top: 20px;">
-            <button type="submit">登録する</button>
-        </div>
-    </form>
+        <form action="/weight_target" method="POST">
+            @csrf
+
+            <div class="form-group">
+                <label>現在の体重</label>
+                <div class="input-unit">
+                    <input type="text" name="current_weight" value="{{ old('current_weight') }}">
+                    <span>kg</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>目標の体重</label>
+                <div class="input-unit">
+                    <input type="text" name="target_weight" value="{{ old('target_weight') }}">
+                    <span>kg</span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">アカウント作成</button>
+
+        </form>
+
+    </div>
+
+</div>
 
 </body>
 </html>

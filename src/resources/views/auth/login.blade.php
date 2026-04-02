@@ -30,7 +30,7 @@
     </form>
 
     <div class="auth-link">
-      <a href="/register">アカウント作成はこちら</a>
+      <a href="/register/step1">アカウント作成はこちら</a>
     </div>
 
   </div>

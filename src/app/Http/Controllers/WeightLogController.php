@@ -4,13 +4,44 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\WeightLog;
+use App\Models\WeightTarget;
 
 class WeightLogController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $logs = WeightLog::all();
-        return view('weight_logs.index', compact('logs'));
+        $weightLogs = WeightLog::where('user_id', auth()->id())
+        ->orderBy('date', 'desc')
+        ->get();
+
+    
+        $currentWeight = $weightLogs->first()->weight ?? 0;
+
+    
+        $target = WeightTarget::where('user_id', auth()->id())->first();
+        $targetWeight = $target->target_weight ?? 0;
+
+    
+        $diff = $currentWeight - $targetWeight;
+
+        $query = WeightLog::where('user_id', auth()->id());
+
+        if ($request->start_date) {
+        $query->where('date', '>=', $request->start_date);
+        }
+
+        if ($request->end_date) {
+        $query->where('date', '<=', $request->end_date);
+        }
+
+        $weightLogs = $query->get();
+
+        return view('weight_logs.index', compact(
+        'weightLogs',
+        'currentWeight',
+        'targetWeight',
+        'diff'
+    ));
     }
 
     public function create()

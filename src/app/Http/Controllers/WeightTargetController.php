@@ -19,6 +19,12 @@ class WeightTargetController extends Controller
             'user_id' => auth()->id(),
         ]);
 
+        WeightLog::create([
+        'user_id' => auth()->id(),
+        'date' => now(),
+        'weight' => $request->current_weight,
+        ]);
+
         return redirect('/weight_logs');
     }
 
