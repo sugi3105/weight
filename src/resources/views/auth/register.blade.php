@@ -13,24 +13,28 @@
     <div class="step">STEP1 アカウント情報の登録</div>
 
   
-    @foreach ($errors->all() as $error)
-      <div style="color:red;">{{ $error }}</div>
-    @endforeach
-
-  
     <form action="/register/step1" method="POST">
       @csrf
 
       <div class="form-group">
         <input type="text" name="name" placeholder="名前">
+        @error('name')
+          <p style="color:red;">{{ $message }}</p>
+        @enderror
       </div>
 
       <div class="form-group">
         <input type="email" name="email" placeholder="メールアドレス">
+        @error('email')
+          <p style="color:red;">{{ $message }}</p>
+        @enderror
       </div>
 
       <div class="form-group">
         <input type="password" name="password" placeholder="パスワード">
+        @error('password')
+          <p style="color:red;">{{ $message }}</p>
+        @enderror
       </div>
 
       

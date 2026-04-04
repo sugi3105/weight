@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\WeightLog;
 use App\Models\WeightTarget;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class WeightTargetController extends Controller
 {
@@ -14,16 +17,32 @@ class WeightTargetController extends Controller
 
     public function store(Request $request)
     {
-        WeightTarget::create([
-            'target_weight' => $request->target_weight,
-            'user_id' => auth()->id(),
-        ]);
+        //dd(session('register_data'));
+        $data =  session('register_data');
 
-        WeightLog::create([
-        'user_id' => auth()->id(),
+        if (!$data) {
+        return redirect('/register/step1');
+    }
+
+        $user = User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => bcrypt($data['password']),
+    ]);
+
+    Auth::login($user);
+
+    WeightTarget::create([
+        'user_id' => $user->id,
+        'target_weight' => $request->target_weight,
+    ]);
+
+    WeightLog::create([
+        'user_id' => $user->id,
         'date' => now(),
         'weight' => $request->current_weight,
-        ]);
+    ]);
+
 
         return redirect('/weight_logs');
     }
@@ -45,4 +64,5 @@ class WeightTargetController extends Controller
 
         return redirect('/weight_logs');
     }
-}
+    }
+        

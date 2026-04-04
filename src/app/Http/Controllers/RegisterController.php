@@ -17,12 +17,15 @@ class RegisterController extends Controller
     {
         $data = $request->validated();
 
-        User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        session([
+            'register_data' => [
+              'name' => $data['name'],
+              'email' => $data['email'],
+              'password' => $data['password'],
+            ]
         ]);
 
         return redirect('/register/step2');
+        dd(session()->all());
     }
 }

@@ -17,21 +17,17 @@
         <p class="subtitle">新規会員登録</p>
         <p class="step">STEP2 体重データの入力</p>
 
-        @if ($errors->any())
-            <div class="error">
-                @foreach ($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
-            </div>
-        @endif
 
-        <form action="/weight_target" method="POST">
+        <form action="/register/step2" method="POST">
             @csrf
 
             <div class="form-group">
                 <label>現在の体重</label>
                 <div class="input-unit">
                     <input type="text" name="current_weight" value="{{ old('current_weight') }}">
+                    @error('current_weight')
+                      <p>{{ $message }}</p>
+                    @enderror
                     <span>kg</span>
                 </div>
             </div>
@@ -40,6 +36,9 @@
                 <label>目標の体重</label>
                 <div class="input-unit">
                     <input type="text" name="target_weight" value="{{ old('target_weight') }}">
+                    @error('target_weight')
+                      <p>{{ $message }}</p>
+                    @enderror
                     <span>kg</span>
                 </div>
             </div>

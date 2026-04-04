@@ -3,40 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\WeightLog;
 use App\Models\WeightTarget;
+
 
 class WeightLogController extends Controller
 {
     public function index(Request $request)
     {
-        $weightLogs = WeightLog::where('user_id', auth()->id())
-        ->orderBy('date', 'desc')
-        ->get();
+        $userId = auth()->id();
 
-    
-        $currentWeight = $weightLogs->first()->weight ?? 0;
+    $query = WeightLog::where('user_id', $userId);
 
-    
-        $target = WeightTarget::where('user_id', auth()->id())->first();
-        $targetWeight = $target->target_weight ?? 0;
-
-    
-        $diff = $currentWeight - $targetWeight;
-
-        $query = WeightLog::where('user_id', auth()->id());
-
-        if ($request->start_date) {
+    if ($request->start_date) {
         $query->where('date', '>=', $request->start_date);
-        }
+    }
 
-        if ($request->end_date) {
+    if ($request->end_date) {
         $query->where('date', '<=', $request->end_date);
-        }
+    }
 
-        $weightLogs = $query->get();
+    $weightLogs = $query->orderBy('date', 'desc')->get();
 
-        return view('weight_logs.index', compact(
+    $currentWeight = $weightLogs->first()->weight ?? 0;
+
+    $target = WeightTarget::where('user_id', $userId)->first();
+    $targetWeight = $target->target_weight ?? 0;
+
+    $diff = $currentWeight - $targetWeight;
+
+    return view('weight_logs.index', compact(
         'weightLogs',
         'currentWeight',
         'targetWeight',
@@ -65,19 +62,5 @@ class WeightLogController extends Controller
     {
         $log = WeightLog::find($weightLogId);
         return view('weight_logs.show', compact('log'));
-    }
-
-    public function update(Request $request, $weightLogId)
-    {
-        $log = WeightLog::find($weightLogId);
-        $log->update($request->all());
-
-        return redirect('/weight_logs');
-    }
-
-    public function destroy($weightLogId)
-    {
-        WeightLog::find($weightLogId)->delete();
-        return redirect('/weight_logs');
     }
 }
