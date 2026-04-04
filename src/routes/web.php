@@ -31,16 +31,16 @@ Route::post('/register/step2', [WeightTargetController::class, 'store']);
 
 Route::middleware(['auth'])->group(function () {  
 Route::get('/weight_logs', [WeightLogController::class, 'index']);
-    Route::get('/weight_logs/create', [WeightLogController::class, 'create']);
-    Route::post('/weight_logs', [WeightLogController::class, 'store']);
-    Route::get('/weight_logs/search', [WeightLogController::class, 'search']);
-    Route::get('/weight_logs/{weightLogId}', [WeightLogController::class, 'show']);
+Route::get('/weight_logs/create', [WeightLogController::class, 'create']);
+Route::post('/weight_logs', [WeightLogController::class, 'store']);
+Route::get('/weight_logs/search', [WeightLogController::class, 'search']);
+Route::get('/weight_logs/{weightLogId}', [WeightLogController::class, 'show']);
 
-    Route::post('/weight_logs/{weightLogId}/update', [WeightLogController::class, 'update']);
-    Route::post('/weight_logs/{weightLogId}/delete', [WeightLogController::class, 'destroy']);
+Route::post('/weight_logs/{weightLogId}/update', [WeightLogController::class, 'update']);
+Route::post('/weight_logs/{weightLogId}/delete', [WeightLogController::class, 'destroy']);
 
-    Route::get('/weight_logs/goal_setting', [WeightTargetController::class, 'edit']);
-    Route::post('/weight_logs/goal_setting', [WeightTargetController::class, 'update']);
+Route::get('/weight_logs/goal_setting', [WeightTargetController::class, 'edit']);
+Route::post('/weight_logs/goal_setting', [WeightTargetController::class, 'update']);
 
-    Route::post('/logout', [LoginController::class, 'destroy']);
+Route::post('/logout', [LoginController::class, 'destroy']);
 });

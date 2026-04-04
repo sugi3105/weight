@@ -27,7 +27,7 @@
                     <input type="text" name="current_weight" value="{{ old('current_weight') }}">
                     <span>kg</span>
                     @error('current_weight')
-                      <p>{{ $message }}</p>
+                      <p style="color:red;">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
@@ -38,7 +38,7 @@
                     <input type="text" name="target_weight" value="{{ old('target_weight') }}">
                     <span>kg</span>
                     @error('target_weight')
-                      <p>{{ $message }}</p>
+                      <p style="color:red;">{{ $message }}</p>
                     @enderror
                 </div>
             </div>

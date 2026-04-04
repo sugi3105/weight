@@ -64,7 +64,7 @@ body {
     margin-top: 20px;
 }
 
-.error-message {
+.error {
     color: red;
     font-size: 12px;
     margin-bottom: 10px;

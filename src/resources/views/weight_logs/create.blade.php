@@ -14,15 +14,6 @@
 
     <h1>体重登録</h1>
 
-    @if ($errors->any())
-        <div style="color: red; margin-bottom: 15px;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     <form action="/weight_logs" method="POST">
         @csrf
@@ -32,6 +23,9 @@
                 <span class="form__label--required">必須</span>
             </label><br>
             <input type="date" name="date" value="{{ old('date') }}">
+            @error('date')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
 
         <div style="margin-bottom: 15px;">
@@ -39,6 +33,9 @@
                 <span class="form__label--required">必須</span>
             </label><br>
             <input type="text" name="weight" value="{{ old('weight') }}">
+            @error('weight')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
 
         <div style="margin-bottom: 15px;">
@@ -46,6 +43,9 @@
                 <span class="form__label--required">必須</span>
             </label><br>
             <input type="text" name="calories" value="{{ old('calories') }}">
+            @error('calories')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
 
         <div style="margin-bottom: 15px;">
@@ -53,11 +53,17 @@
                 <span class="form__label--required">必須</span>
             </label><br>
             <input type="text" name="exercise_time" value="{{ old('exercise_time') }}">
+            @error('exercise_time')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
 
         <div style="margin-bottom: 15px;">
             <label>運動内容</label><br>
-            <textarea name="memo">{{ old('memo') }}</textarea>
+            <textarea name="exercise_content">{{ old('exercise_content') }}</textarea>
+            @error('exercise_content')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
 
         <button type="submit" class="button">登録</button>

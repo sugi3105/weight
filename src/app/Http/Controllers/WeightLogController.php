@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\WeightLog;
 use App\Models\WeightTarget;
+use App\Http\Requests\WeightLogRequest;
 
 
 class WeightLogController extends Controller
@@ -46,9 +47,17 @@ class WeightLogController extends Controller
         return view('weight_logs.create');
     }
 
-    public function store(Request $request)
+    public function store(WeightLogRequest $request)
     {
-        WeightLog::create($request->all());
+        WeightLog::create([
+            'user_id' => auth()->id(),
+            'date' => $request->date,
+            'weight' => $request->weight,
+            'calories' => $request->calories,
+            'exercies_time' => $request->_time,
+            'exercies_content' => $request->exercise_content,
+        ]);
+    
         return redirect('/weight_logs');
     }
 

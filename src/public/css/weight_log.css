@@ -88,3 +88,11 @@ tr {
     background: #ddd;
     border-radius: 5px;
 }
+.reqired {
+    color: red;
+    font-size: 12px;
+    margin-left: 5px;
+}
+.body {
+    background-color: red;
+}
