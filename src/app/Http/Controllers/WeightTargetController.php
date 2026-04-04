@@ -7,6 +7,7 @@ use App\Models\WeightLog;
 use App\Models\WeightTarget;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Requests\WeightTargetRequest;
 
 class WeightTargetController extends Controller
 {
@@ -15,7 +16,7 @@ class WeightTargetController extends Controller
         return view('weight_target.create');
     }
 
-    public function store(Request $request)
+    public function store(WeightTargetRequest $request)
     {
         //dd(session('register_data'));
         $data =  session('register_data');

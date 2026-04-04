@@ -25,10 +25,10 @@
                 <label>現在の体重</label>
                 <div class="input-unit">
                     <input type="text" name="current_weight" value="{{ old('current_weight') }}">
+                    <span>kg</span>
                     @error('current_weight')
                       <p>{{ $message }}</p>
                     @enderror
-                    <span>kg</span>
                 </div>
             </div>
 
@@ -36,10 +36,10 @@
                 <label>目標の体重</label>
                 <div class="input-unit">
                     <input type="text" name="target_weight" value="{{ old('target_weight') }}">
+                    <span>kg</span>
                     @error('target_weight')
                       <p>{{ $message }}</p>
                     @enderror
-                    <span>kg</span>
                 </div>
             </div>
 

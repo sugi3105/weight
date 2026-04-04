@@ -28,27 +28,35 @@
         @csrf
 
         <div style="margin-bottom: 15px;">
-            <label>日付</label><br>
+            <label>日付
+                <span class="form__label--required">必須</span>
+            </label><br>
             <input type="date" name="date" value="{{ old('date') }}">
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label>体重 (kg)</label><br>
+            <label>体重 (kg)
+                <span class="form__label--required">必須</span>
+            </label><br>
             <input type="text" name="weight" value="{{ old('weight') }}">
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label>摂取カロリー</label><br>
+            <label>摂取カロリー
+                <span class="form__label--required">必須</span>
+            </label><br>
             <input type="text" name="calories" value="{{ old('calories') }}">
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label>運動時間</label><br>
+            <label>運動時間
+                <span class="form__label--required">必須</span>
+            </label><br>
             <input type="text" name="exercise_time" value="{{ old('exercise_time') }}">
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label>メモ</label><br>
+            <label>運動内容</label><br>
             <textarea name="memo">{{ old('memo') }}</textarea>
         </div>
 

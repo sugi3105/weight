@@ -29,9 +29,8 @@ Route::get('/register/step2', [WeightTargetController::class, 'create']);
 Route::post('/register/step2', [WeightTargetController::class, 'store']);
 
 
-Route::middleware(['auth'])->group(function () {
-
-    Route::get('/weight_logs', [WeightLogController::class, 'index']);
+Route::middleware(['auth'])->group(function () {  
+Route::get('/weight_logs', [WeightLogController::class, 'index']);
     Route::get('/weight_logs/create', [WeightLogController::class, 'create']);
     Route::post('/weight_logs', [WeightLogController::class, 'store']);
     Route::get('/weight_logs/search', [WeightLogController::class, 'search']);
