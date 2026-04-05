@@ -54,8 +54,8 @@ class WeightLogController extends Controller
             'date' => $request->date,
             'weight' => $request->weight,
             'calories' => $request->calories,
-            'exercies_time' => $request->_time,
-            'exercies_content' => $request->exercise_content,
+            'exercise_time' => $request->exercise_time,
+            'exercise_content' => $request->exercise_content,
         ]);
     
         return redirect('/weight_logs');
@@ -71,5 +71,26 @@ class WeightLogController extends Controller
     {
         $log = WeightLog::find($weightLogId);
         return view('weight_logs.show', compact('log'));
+    }
+
+    public function edit($id)
+    {
+       $log = WeightLog::findOrFail($id);
+       return view('weight_logs.edit', compact('log'));
+    }
+
+    public function update(Request $request, $weightLogId)
+    {
+       $log = WeightLog::findOrFail($weightLogId);
+
+       $log->update([
+        'date' => $request->date,
+        'weight' => $request->weight,
+        'calories' => $request->calories,
+        'exercise_time' => $request->exercise_time,
+        'exercise_content' => $request->exercise_content,
+    ]);
+
+    return redirect('/weight_logs');
     }
 }

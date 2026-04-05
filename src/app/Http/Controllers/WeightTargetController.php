@@ -35,13 +35,13 @@ class WeightTargetController extends Controller
 
     WeightTarget::create([
         'user_id' => $user->id,
-        'target_weight' => $request->target_weight,
+        'target_weight' => $request->current_weight,
     ]);
 
     WeightLog::create([
         'user_id' => $user->id,
         'date' => now(),
-        'weight' => $request->current_weight,
+        'weight' => $request->target_weight,
     ]);
 
 

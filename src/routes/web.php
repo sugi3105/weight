@@ -34,9 +34,10 @@ Route::get('/weight_logs', [WeightLogController::class, 'index']);
 Route::get('/weight_logs/create', [WeightLogController::class, 'create']);
 Route::post('/weight_logs', [WeightLogController::class, 'store']);
 Route::get('/weight_logs/search', [WeightLogController::class, 'search']);
-Route::get('/weight_logs/{weightLogId}', [WeightLogController::class, 'show']);
 
 Route::post('/weight_logs/{weightLogId}/update', [WeightLogController::class, 'update']);
+Route::get('/weight_logs/{weightLogId}', [WeightLogController::class, 'show']);
+Route::get('/weight_logs/{weightLogId}/edit', [WeightLogController::class, 'edit']);
 Route::post('/weight_logs/{weightLogId}/delete', [WeightLogController::class, 'destroy']);
 
 Route::get('/weight_logs/goal_setting', [WeightTargetController::class, 'edit']);

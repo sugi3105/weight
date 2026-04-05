@@ -1,8 +1,14 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ asset('css/weight_log.css') }}">
+</head>    
+    <div class="container">
 
     <h1 class="title">Weight Log</h1>
 
-    <form action="/weight_logs/update" method="POST">
+    <form action="/weight_logs/{{ $log->id }}/update" method="POST">
         @csrf
 
         <div class="form-group">
