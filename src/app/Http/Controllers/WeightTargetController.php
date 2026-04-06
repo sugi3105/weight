@@ -50,13 +50,17 @@ class WeightTargetController extends Controller
 
     public function edit()
     {
-        $target = WeightTarget::where('user_id', auth()->id())->first();
+        $weightTarget = WeightTarget::where('user_id', auth()->id())->first();
 
-        return view('weight_target.edit', compact('target'));
+        return view('weight_logs.goal_setting', compact('weightTarget'));
     }
 
     public function update(Request $request)
     {
+        $request->validate([
+            'target_weight' => ['required', 'numeric'],
+        ]);
+
         $target = WeightTarget::where('user_id', auth()->id())->first();
 
         $target->update([

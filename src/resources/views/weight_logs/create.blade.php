@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ asset('css/weight_log.css') }}">
-</head>
+@extends('layouts.app')
+
+@section('content')
 
 <div class="container">
+
     <h1>体重管理</h1>
 
     <form action="/weight_logs" method="POST">

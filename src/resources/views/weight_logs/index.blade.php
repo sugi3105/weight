@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>体重管理</title>
+@extends('layouts.app')
 
-    <link rel="stylesheet" href="{{ asset('css/weight_log.css') }}">
-
-
-</head>
-<body>
+@section('content')
 
 <div class="container">
 
