@@ -69,7 +69,7 @@ class WeightLogController extends Controller
 
     public function show($weightLogId)
     {
-        $log = WeightLog::find($weightLogId);
+        $log = WeightLog::findOrFail($id);
         return view('weight_logs.show', compact('log'));
     }
 

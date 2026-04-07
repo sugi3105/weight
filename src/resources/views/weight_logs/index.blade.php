@@ -42,6 +42,7 @@
                 <th>体重</th>
                 <th>摂取カロリー</th>
                 <th>運動時間</th>
+                <th>操作</th>
             </tr>
         </thead>
 
@@ -52,6 +53,9 @@
                     <td>{{ $log->weight }}kg</td>
                     <td>{{ $log->calories }}kcal</td>
                     <td>{{ $log->exercise_time }}</td>
+                    <td>
+                     <a href="/weight_logs/{{ $log->id }}/edit">✏</a>
+                    </td>
                 </tr>
             @empty
                 <tr>
