@@ -60,7 +60,7 @@
             @endforelse
         </tbody>
     </table>
-    
+    {{ $weightLogs->links() }}
 
 </div>
 

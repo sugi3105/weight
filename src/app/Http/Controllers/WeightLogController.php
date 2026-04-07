@@ -25,7 +25,7 @@ class WeightLogController extends Controller
         $query->where('date', '<=', $request->end_date);
     }
 
-    $weightLogs = $query->orderBy('date', 'desc')->get();
+    $weightLogs = $query->orderBy('date', 'desc')->paginate(8);
 
     $currentWeight = $weightLogs->first()->weight ?? 0;
 
