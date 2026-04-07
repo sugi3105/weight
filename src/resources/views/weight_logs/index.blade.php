@@ -9,7 +9,7 @@
     <div class="summary">
         <div class="summary-box">
             <p>目標体重</p>
-            <p class="summary-value">{{ $currentWeight }}kg</p>
+            <p class="summary-value">{{ $targetWeight }}kg</p>
         </div>
         <div class="summary-box">
             <p>目標まで</p>
@@ -17,7 +17,7 @@
         </div>
         <div class="summary-box">
             <p>最新体重</p>
-            <p class="summary-value">{{ $targetWeight }}kg</p>
+            <p class="summary-value">{{ $currentWeight }}kg</p>
         </div>
     </div>
 
@@ -60,6 +60,7 @@
             @endforelse
         </tbody>
     </table>
+    
 
 </div>
 

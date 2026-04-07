@@ -76,7 +76,7 @@ class WeightLogController extends Controller
     public function edit($id)
     {
        $log = WeightLog::findOrFail($id);
-       return view('weight_logs.goal_setting', compact('log'));
+       return view('weight_logs.edit', compact('log'));
     }
 
     public function update(Request $request, $weightLogId)
@@ -90,7 +90,6 @@ class WeightLogController extends Controller
         'exercise_time' => $request->exercise_time,
         'exercise_content' => $request->exercise_content,
     ]);
-
     return redirect('/weight_logs');
     }
 }

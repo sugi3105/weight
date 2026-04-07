@@ -35,14 +35,14 @@ class WeightTargetController extends Controller
 
     WeightTarget::create([
         'user_id' => $user->id,
-        'target_weight' => $request->current_weight,
+        'target_weight' => $request->target_weight,
     ]);
 
-    WeightLog::create([
-        'user_id' => $user->id,
-        'date' => now(),
-        'weight' => $request->target_weight,
-    ]);
+    //WeightLog::create([
+       // 'user_id' => $user->id,
+       //'date' => now(),
+        //'weight' => $request->target_weight,
+   // ]);
 
 
         return redirect('/weight_logs');
@@ -58,16 +58,21 @@ class WeightTargetController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'target_weight' => ['required', 'numeric'],
-        ]);
+        'target_weight' => ['required', 'numeric'],
+    ]);
 
-        $target = WeightTarget::where('user_id', auth()->id())->first();
+    $target = WeightTarget::where('user_id', auth()->id())->first();
 
+    if ($target) {
         $target->update([
             'target_weight' => $request->target_weight,
         ]);
-
-        return redirect('/weight_logs');
+    } else {
+        WeightTarget::create([
+            'user_id' => auth()->id(),
+            'target_weight' => $request->target_weight,
+        ]);
     }
-    }
-        
+    
+    return redirect('/weight_logs');
+} }      

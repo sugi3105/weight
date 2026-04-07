@@ -4,43 +4,26 @@
 
 <div class="container">
 
-    <h1 class="title">Weight Log</h1>
+    <h2>目標体重設定</h2>
 
-    <form action="/weight_logs/{{ $log->id }}/update" method="POST">
+    <form action="/weight_logs/goal_setting" method="POST">
         @csrf
 
-        <div class="form-group">
-            <label>日付</label>
-            <input type="date" name="date" value="{{ old('date', $log->date) }}">
-        </div>
+        <input
+            type="text"
+            name="target_weight"
+            value="{{ old('target_weight', $weightTarget->target_weight ?? '') }}"
+        > kg
 
-        <div class="form-group">
-            <label>体重</label>
-            <input type="text" name="weight" value="{{ old('weight', $log->weight) }}">
-            <span>kg</span>
-        </div>
+        @error('target_weight')
+            <p style="color:red;">{{ $message }}</p>
+        @enderror
 
-        <div class="form-group">
-            <label>摂取カロリー</label>
-            <input type="text" name="calories" value="{{ old('calories', $log->calories) }}">
-            <span>cal</span>
-        </div>
+        <br><br>
 
-        <div class="form-group">
-            <label>運動時間</label>
-            <input type="time" name="exercise_time" value="{{ old('exercise_time', $log->exercise_time) }}">
-        </div>
+        <a href="/weight_logs">戻る</a>
 
-        <div class="form-group">
-            <label>運動内容</label>
-            <textarea name="exercise_content">{{ old('exercise_content', $log->exercise_content) }}</textarea>
-        </div>
-
-        <div class="button-group">
-            <a href="/weight_logs">戻る</a>
-            <button type="submit">更新</button>
-        </div>
-
+        <button type="submit">更新</button>
     </form>
 
 </div>

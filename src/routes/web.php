@@ -42,7 +42,7 @@ Route::get('/weight_logs/{weightLogId}/edit', [WeightLogController::class, 'edit
 Route::post('/weight_logs/{weightLogId}/update', [WeightLogController::class, 'update']);
 Route::get('/weight_logs/{weightLogId}', [WeightLogController::class, 'show']);
 Route::post('/weight_logs/{weightLogId}/delete', [WeightLogController::class, 'destroy']);
-Route::post('/weight_logs/{weightLogId}/update', [WeightLogController::class, 'update']);
+
 
 Route::post('/logout', [LoginController::class, 'destroy']);
 });
