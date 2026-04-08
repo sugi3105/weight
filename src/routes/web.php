@@ -18,7 +18,7 @@ use App\Http\Controllers\WeightTargetController;
 */
 
 //Route::get('/', function () {
-    //return view('welcome');
+    //return view('welcome'); 
 Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 

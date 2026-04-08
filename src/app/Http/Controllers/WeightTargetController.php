@@ -18,7 +18,6 @@ class WeightTargetController extends Controller
 
     public function store(WeightTargetRequest $request)
     {
-        //dd(session('register_data'));
         $data =  session('register_data');
 
         if (!$data) {
@@ -37,11 +36,17 @@ class WeightTargetController extends Controller
         'user_id' => $user->id,
         'target_weight' => $request->target_weight,
     ]);
+    WeightLog::create([
+        'user_id' => $user->id,
+        'date' => now(),
+        'weight' => $request->current_weight,
+    ]);
+
 
     //WeightLog::create([
-       // 'user_id' => $user->id,
+        //'user_id' => auth()->id,
        //'date' => now(),
-        //'weight' => $request->target_weight,
+        //'weight' => $request->current_weight,
    // ]);
 
 
