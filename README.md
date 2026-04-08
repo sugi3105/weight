@@ -43,7 +43,7 @@ DB_PASSWORD=laravel_pass
    `MySQL8.0.26`
 
 ## ER図
-![ER図](./er.phg)
+![ER図](./er.png)
 
 
 
